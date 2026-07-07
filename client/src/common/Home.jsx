@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Separator } from "@/components/ui/separator"
 import { AnimatedNumber } from "@/components/ui/animated-number"
+import { ArrowRightIcon } from '@phosphor-icons/react'
+import HomeMarquee from './HomeMarquee'
 
 function Home() {
   const [animatedValue, setAnimatedValue] = useState({
@@ -28,14 +30,15 @@ function Home() {
             <img className='h-50' src="https://res.cloudinary.com/dwaaoyztz/image/upload/v1783449552/Red_Network_Globe_jzbftj.svg" alt="" />
             <h1 className='text-white text-2xl md:text-6xl font-bold'>Helping talent find purpose <br /> and businesses find people.</h1>
             <div className='flex max-md:flex-col gap-5 py-4'>
-              <button className='flex-1  p-3 rounded-xl very-blue cursor-pointer' >Find your next company</button>
+              <button className='  py-5 px-5 rounded-xl very-blue cursor-pointer flex items-center gap-4 text-xl' >Find Jobs<ArrowRightIcon size={24}/> </button>
               <Separator orientation="vertical" className="hidden md:block " />
-              <button className='flex-1  p-3 rounded-xl very-blue cursor-pointer' >Find your <br /> next hire</button>
+              <button className='  py-5 px-5 rounded-xl very-blue cursor-pointer flex items-center gap-4 text-xl' >Hire Talent <ArrowRightIcon size={24}/> </button>
             </div>
           </div>
         </section>
+        
         {/* stats */}
-        <section className='flex gap-20 py-10'>
+        <section className='grid grid-cols-2 md:grid-cols-4 gap-20 py-10'>
           <div className='flex flex-col items-center gap-5'>
             <div className="text-5xl flex ">
               <AnimatedNumber value={animatedValue.candidates} />
@@ -68,6 +71,9 @@ function Home() {
             <span className='text-3xl text-center'>Successful <br /> Placements</span>
           </div>
         </section>
+        {/* marquee */}
+        <h1 className="text-5xl py-20 font-bold">Featured Companies</h1>
+        <HomeMarquee/>
       </main>
     </>
   )

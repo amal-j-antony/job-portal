@@ -15,9 +15,9 @@ Black_And_White_Modern_Vintage_Retro_Brand_Logo-Photoroom_kscx9m.png" alt="" />
 
           {/* other actions */}
           <div className="flex gap-5 items-center text-xl font-bold">
-            <Link>Home</Link>
-            <Link>Contact Us</Link>
-            <Link>Log In</Link>
+            <Link className='hover:underline '>Home</Link>
+            <Link className='hover:underline '>Contact Us</Link>
+            <Link className='hover:underline '>Log In</Link>
             <Link className='border py-2 px-4 rounded-xl hover:bg-slate-50 hover:text-slate-950 duration-500'>Join for free</Link>
           </div>
         </section>
