@@ -10,18 +10,31 @@ import Footer from './common/Footer'
 import Auth from './common/Auth'
 import PageNotFound from './common/PageNotFound'
 import Contact from './common/Contact'
+import Register from './common/Register'
+import CandidateDashboard from './Candidate/CandidateDashboard'
+import CandidateOverview from './Candidate/CandidateOverview'
 
 function App() {
-  
 
   return (
     <>
     <Header/>
      <Routes>
       <Route path='/' element={<Home/>} />
+      {/* auth */}
       <Route path='/login' element={<Auth/>} />
-      <Route path='/register' element={<Auth register />} />
+
+      {/* register */}
+      <Route path='/register' element={<Register />} />
+
+      {/* contact */}
       <Route path='/contact' element={<Contact/>} />
+
+      {/* candidate dashboard */}
+      <Route path='/candidate/:id/dashboard'  element={<CandidateOverview/>} />
+
+
+      {/* page not found */}
       <Route path='/*' element={<PageNotFound/>} />
      </Routes>
     <Footer/>
