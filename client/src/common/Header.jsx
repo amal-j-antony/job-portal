@@ -9,9 +9,8 @@ function Header() {
         <section className='w-[90%] flex justify-between ' >
           {/* logo */}
           <Link to={"/"} className='flex items-center'>
-            <img className='h-20' src="https://res.cloudinary.com/dwaaoyztz/image/upload/v1783449142/
-Black_And_White_Modern_Vintage_Retro_Brand_Logo-Photoroom_kscx9m.png" alt="" />
-            <span className=' font-bold text-2xl'>J-NETWORK</span>
+            <img className='h-20' src="https://res.cloudinary.com/dwaaoyztz/image/upload/v1783540079/Black_And_White_Modern_Vintage_Retro_Brand_Logo_2_-Photoroom_ml9as9.png" alt="" />
+            <span className=' font-bold text-2xl'>Nextra</span>
           </Link>
 
           {/* other actions */}

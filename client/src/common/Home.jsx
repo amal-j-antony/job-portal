@@ -29,7 +29,7 @@ function Home() {
           <img className='h-screen md:max-h-[70vh] w-full object-cover' src="https://res.cloudinary.com/dwaaoyztz/image/upload/v1783444747/codioful-formerly-gradienta-OzfD79w8ptA-unsplash_io5awv.jpg" alt="" />
           <div className="z-1 absolute top-0 w-full h-full flex flex-col gap-10 max-md:flex-wrap max-md:px-10 justify-center items-center">
             <img className='h-50' src="https://res.cloudinary.com/dwaaoyztz/image/upload/v1783449552/Red_Network_Globe_jzbftj.svg" alt="" />
-            <h1 className='text-white text-2xl md:text-6xl font-bold'>Helping talent find purpose <br /> and businesses find people.</h1>
+            <h1 className='text-white text-2xl md:text-6xl font-bold text-center'>Connecting exceptional talent<br />with ambitious businesses </h1>
             <div className='flex max-md:flex-col gap-5 py-4'>
               <button className='  py-5 px-5 rounded-xl very-blue cursor-pointer flex items-center gap-4 text-xl' >Find Jobs<ArrowRightIcon size={24}/> </button>
               <Separator orientation="vertical" className="hidden md:block " />
@@ -76,7 +76,7 @@ function Home() {
         <h1 className="text-5xl py-20 font-bold">Featured Companies</h1>
         <HomeMarquee/>
         {/* why choose */}
-        <h1 className="text-center text-5xl my-10">Why choose J-network</h1>
+        <h1 className="text-center text-5xl my-10">Why choose Nextra</h1>
         <section className='flex flex-wrap gap-5 items-stretch justify-center container mb-20'>
           {
             whyChoose.map((item) => (
