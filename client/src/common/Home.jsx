@@ -77,10 +77,10 @@ function Home() {
         <HomeMarquee/>
         {/* why choose */}
         <h1 className="text-center text-5xl my-10">Why choose J-network</h1>
-        <section className='flex flex-wrap gap-5 items-stretch justify-center container'>
+        <section className='flex flex-wrap gap-5 items-stretch justify-center container mb-20'>
           {
             whyChoose.map((item) => (
-              <div className="flex-1 border border-foreground rounded-xl p-5">
+              <div className="flex-1 border border-foreground hover:bg-blue-900 hover:text-white duration-500 rounded-xl p-5">
                 <h1>{item.title}</h1>
               </div>
             ))
