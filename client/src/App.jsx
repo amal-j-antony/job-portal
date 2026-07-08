@@ -6,7 +6,11 @@ import './App.css'
 import Header from './common/Header'
 import { Route, Routes } from 'react-router-dom'
 import Home from './common/Home'
+<<<<<<< HEAD
 import CompanyDashboard from './Company/CompanyDashboard'
+=======
+import Footer from './common/Footer'
+>>>>>>> c490b3f9cdbafff8f357ed64780b41751ea5afc8
 
 function App() {
   
@@ -17,6 +21,7 @@ function App() {
       <Route path='/' element={<Home/>} />
       <Route path='/companyDashboard' element={<CompanyDashboard/>} />
      </Routes>
+    <Footer/>
     </>
   )
 }
