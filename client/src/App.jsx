@@ -6,15 +6,16 @@ import './App.css'
 import Header from './common/Header'
 import { Route, Routes } from 'react-router-dom'
 import Home from './common/Home'
+import CompanyDashboard from './Company/CompanyDashboard'
 
 function App() {
   
 
   return (
     <>
-    <Header/>
      <Routes>
       <Route path='/' element={<Home/>} />
+      <Route path='/companyDashboard' element={<CompanyDashboard/>} />
      </Routes>
     </>
   )

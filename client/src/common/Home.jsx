@@ -3,6 +3,7 @@ import { Separator } from "@/components/ui/separator"
 import { AnimatedNumber } from "@/components/ui/animated-number"
 import { ArrowRightIcon } from '@phosphor-icons/react'
 import HomeMarquee from './HomeMarquee'
+import Header from './Header'
 
 function Home() {
   const [animatedValue, setAnimatedValue] = useState({
@@ -22,6 +23,7 @@ function Home() {
   }, [])
   return (
     <>
+    <Header></Header>
       <main className='flex flex-col justify-center items-center w-full'>
         {/* hero image */}
         <section className='w-full relative text-white' >
