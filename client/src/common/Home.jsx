@@ -3,6 +3,7 @@ import { Separator } from "@/components/ui/separator"
 import { AnimatedNumber } from "@/components/ui/animated-number"
 import { ArrowRightIcon } from '@phosphor-icons/react'
 import HomeMarquee from './HomeMarquee'
+import { whyChoose } from '@/assets/whyChoose'
 
 function Home() {
   const [animatedValue, setAnimatedValue] = useState({
@@ -74,6 +75,18 @@ function Home() {
         {/* marquee */}
         <h1 className="text-5xl py-20 font-bold">Featured Companies</h1>
         <HomeMarquee/>
+        {/* why choose */}
+        <h1 className="text-center text-5xl my-10">Why choose J-network</h1>
+        <section className='flex flex-wrap gap-5 items-stretch justify-center container mb-20'>
+          {
+            whyChoose.map((item) => (
+              <div className="flex-1 border border-foreground hover:bg-blue-900 hover:text-white duration-500 rounded-xl p-5">
+                <h1>{item.title}</h1>
+              </div>
+            ))
+          }
+        </section>
+
       </main>
     </>
   )
