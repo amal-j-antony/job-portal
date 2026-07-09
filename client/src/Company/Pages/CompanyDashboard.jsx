@@ -1,20 +1,13 @@
 import React from 'react'
-
+import Sidebar from '../components/Sidebar'
 function CompanyDashboard() {
   return (
     <>
       <div className='grid grid-cols-12'>
         <div className='col-span-2 bg-[#03045e] h-screen sticky top-0'>
-          <h1 className='text-3xl font-bold text-white text-center mt-9'>J-NETWORK</h1>
-          <p className='text-gray-300 text-center mt-1 mb-8'>Company Panel</p>
-          <div className='text-center'>
-            <div className='text-white bg-[#00b4d8] p-4 font-semibold ms-2 me-2 rounded-sm'>Dashboard</div><br />
-            <div className='text-white p-4 font-semibold hover:bg-blue-900 ms-2 me-2 rounded-sm'>Job Listings</div><br />
-            <div className='text-white p-4 font-semibold hover:bg-blue-900 ms-2 me-2 rounded-sm'>Applicants</div><br />
-            <div className='text-white p-4 font-semibold hover:bg-blue-900 ms-2 me-2 rounded-sm'>Interviews</div><br />
-            <div className='text-white p-4 font-semibold hover:bg-blue-900 ms-2 me-2 rounded-sm'>Company Profile</div>
-          </div>
+          <Sidebar></Sidebar>
         </div>
+        
         <div className='col-span-10 bg-[#f5f7fb]'>
           <div className='p-5 bg-white shadow-lg flex justify-between items-center'>
             <div>

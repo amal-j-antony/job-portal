@@ -1,27 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
-import Header from './common/Header'
 import { Route, Routes } from 'react-router-dom'
 import Home from './common/Home'
-<<<<<<< HEAD
-import CompanyDashboard from './Company/CompanyDashboard'
-=======
 import Footer from './common/Footer'
->>>>>>> c490b3f9cdbafff8f357ed64780b41751ea5afc8
+import Auth from './common/Auth'
+import Contact from './common/Contact'
+import Register from './common/Register'
+import PageNotFound from './common/PageNotFound'
+import CompanyDashboard from './Company/Pages/CompanyDashboard'
+import CandidateOverview from './Candidate/CandidateOverview'
+import JobListing from './Company/Pages/JobListing'
+import Applicants from './Company/Pages/Applicants'
 
 function App() {
-  
-
   return (
     <>
-     <Routes>
-      <Route path='/' element={<Home/>} />
-      <Route path='/companyDashboard' element={<CompanyDashboard/>} />
-     </Routes>
-    <Footer/>
+      <Routes>
+        <Route path='/' element={<Home />} />
+
+        {/* Company */}
+        <Route path='/companyDashboard' element={<CompanyDashboard />} />
+        <Route path='/joblisting' element={<JobListing />} />
+        <Route path='/applicants' element={<Applicants />} />
+
+        {/* Authentication */}
+        <Route path='/login' element={<Auth />} />
+        <Route path='/register' element={<Register />} />
+
+        {/* Contact */}
+        <Route path='/contact' element={<Contact />} />
+
+        {/* Candidate */}
+        <Route
+          path='/candidate/:id/dashboard'
+          element={<CandidateOverview />}
+        />
+
+        {/* 404 */}
+        <Route path='/*' element={<PageNotFound />} />
+      </Routes>
+
+      <Footer />
     </>
   )
 }
