@@ -13,6 +13,7 @@ import Contact from './common/Contact'
 import Register from './common/Register'
 import CandidateDashboard from './Candidate/CandidateDashboard'
 import CandidateOverview from './Candidate/CandidateOverview'
+import Jobs from './Candidate/Jobs'
 
 function App() {
 
@@ -32,6 +33,9 @@ function App() {
 
       {/* candidate dashboard */}
       <Route path='/candidate/:id/dashboard'  element={<CandidateOverview/>} />
+
+      {/* jobs */}
+      <Route path='/jobs' element={<Jobs/>} />
 
 
       {/* page not found */}

@@ -4,13 +4,16 @@ import CandidateProfile from './CandidateProfile'
 import Jobs from './Jobs'
 import CandidateApplications from './CandidateApplications'
 import CandidateInterviews from './CandidateInterviews'
+import { useNavigate, useParams } from 'react-router-dom'
 
 function CandidateOverview() {
     const [tab, setTab] = useState("dashboard")
+    
+    const navigate= useNavigate()
     return (
         <>
             <div className='grid grid-cols-12 min-h-screen bg-[#f5f7fb] '>
-                <div className='col-span-2 bg-slate-50 h-screen rounded-3xl sticky top-0 '>
+                <div className='col-span-2 bg-slate-50 h-screen rounded-3xl sticky top-0 shadow-lg '>
                     <h1 className='text-3xl font-bold text-center my-9'>Welcome,user</h1>
                     <div className='flex flex-col items-stretch text-center gap-5 '>
                         <div onClick={() => setTab("dashboard")} className={
@@ -43,7 +46,7 @@ function CandidateOverview() {
                     tab == "profile" && <CandidateProfile/>
                 }
                 {
-                    tab == "jobs" && <Jobs/>
+                    tab == "jobs" && navigate("/jobs")
                 }
                 {
                     tab == "applications" && <CandidateApplications/>
