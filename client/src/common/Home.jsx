@@ -3,8 +3,8 @@ import { Separator } from "@/components/ui/separator"
 import { AnimatedNumber } from "@/components/ui/animated-number"
 import { ArrowRightIcon } from '@phosphor-icons/react'
 import HomeMarquee from './HomeMarquee'
+import Header from './Header'
 import { whyChoose } from '@/assets/whyChoose'
-
 function Home() {
   const [animatedValue, setAnimatedValue] = useState({
     companies: 0,
@@ -23,6 +23,7 @@ function Home() {
   }, [])
   return (
     <>
+    <Header></Header>
       <main className='flex flex-col justify-center items-center w-full'>
         {/* hero image */}
         <section className='w-full relative text-white' >

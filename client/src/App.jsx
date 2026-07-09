@@ -1,43 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
-import Header from './common/Header'
 import { Route, Routes } from 'react-router-dom'
 import Home from './common/Home'
 import Footer from './common/Footer'
 import Auth from './common/Auth'
-import PageNotFound from './common/PageNotFound'
 import Contact from './common/Contact'
 import Register from './common/Register'
-import CandidateDashboard from './Candidate/CandidateDashboard'
+import PageNotFound from './common/PageNotFound'
+import CompanyDashboard from './Company/Pages/CompanyDashboard'
 import CandidateOverview from './Candidate/CandidateOverview'
+import JobListing from './Company/Pages/JobListing'
+import Applicants from './Company/Pages/Applicants'
 
 function App() {
-
   return (
     <>
-    <Header/>
-     <Routes>
-      <Route path='/' element={<Home/>} />
-      {/* auth */}
-      <Route path='/login' element={<Auth/>} />
+      <Routes>
+        <Route path='/' element={<Home />} />
 
-      {/* register */}
-      <Route path='/register' element={<Register />} />
+        {/* Company */}
+        <Route path='/companyDashboard' element={<CompanyDashboard />} />
+        <Route path='/joblisting' element={<JobListing />} />
+        <Route path='/applicants' element={<Applicants />} />
 
-      {/* contact */}
-      <Route path='/contact' element={<Contact/>} />
+        {/* Authentication */}
+        <Route path='/login' element={<Auth />} />
+        <Route path='/register' element={<Register />} />
 
-      {/* candidate dashboard */}
-      <Route path='/candidate/:id/dashboard'  element={<CandidateOverview/>} />
+        {/* Contact */}
+        <Route path='/contact' element={<Contact />} />
 
+        {/* Candidate */}
+        <Route
+          path='/candidate/:id/dashboard'
+          element={<CandidateOverview />}
+        />
 
-      {/* page not found */}
-      <Route path='/*' element={<PageNotFound/>} />
-     </Routes>
-    <Footer/>
+        {/* 404 */}
+        <Route path='/*' element={<PageNotFound />} />
+      </Routes>
+
+      <Footer />
     </>
   )
 }
