@@ -13,11 +13,13 @@ import Jobs from './Candidate/Jobs'
 
 import JobListing from './Company/Pages/JobListing'
 import Applicants from './Company/Pages/Applicants'
+import Header from './common/Header'
 
 
 function App() {
   return (
     <>
+    <Header/>
       <Routes>
         <Route path='/' element={<Home />} />
 
@@ -33,8 +35,8 @@ function App() {
         {/* Contact */}
         <Route path='/contact' element={<Contact />} />
 
-      {/* jobs */}
-      <Route path='/jobs' element={<Jobs/>} />
+        {/* jobs */}
+        <Route path='/jobs' element={<Jobs />} />
 
         {/* Candidate */}
         <Route
