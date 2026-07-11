@@ -17,7 +17,7 @@ function Header() {
           <div className="flex gap items-center text-xl font-bold">
             <Link to={"/"}  className='hover:bg-blue-900 p-5 duration-500'>Home</Link>
             <Separator orientation='vertical' className="my-5"/>
-            <Link className='hover:bg-blue-900 p-5 duration-500 '>Find Jobs</Link>
+            <Link to={"/jobs"} className='hover:bg-blue-900 p-5 duration-500 '>Find Jobs</Link>
             <Separator orientation='vertical' className="my-5"/>
             <Link className='hover:bg-blue-900 p-5 duration-500 '>Hire Talent</Link>
             <Separator orientation='vertical' className="my-5"/>

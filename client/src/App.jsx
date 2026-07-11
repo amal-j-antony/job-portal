@@ -8,8 +8,13 @@ import Register from './common/Register'
 import PageNotFound from './common/PageNotFound'
 import CompanyDashboard from './Company/Pages/CompanyDashboard'
 import CandidateOverview from './Candidate/CandidateOverview'
+
+import Jobs from './Candidate/Jobs'
+import Profile from './Company/Pages/Profile'
 import JobListing from './Company/Pages/JobListing'
 import Applicants from './Company/Pages/Applicants'
+import Interview from './Company/Pages/Interview'
+
 
 function App() {
   return (
@@ -21,6 +26,8 @@ function App() {
         <Route path='/companyDashboard' element={<CompanyDashboard />} />
         <Route path='/joblisting' element={<JobListing />} />
         <Route path='/applicants' element={<Applicants />} />
+        <Route path='/interview' element={<Interview />} />
+        <Route path='/profile' element={<Profile />} />
 
         {/* Authentication */}
         <Route path='/login' element={<Auth />} />
@@ -28,6 +35,9 @@ function App() {
 
         {/* Contact */}
         <Route path='/contact' element={<Contact />} />
+
+      {/* jobs */}
+      <Route path='/jobs' element={<Jobs/>} />
 
         {/* Candidate */}
         <Route
