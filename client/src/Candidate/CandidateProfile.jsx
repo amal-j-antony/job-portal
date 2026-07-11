@@ -1,7 +1,9 @@
 import { PlusIcon } from '@phosphor-icons/react'
-import React from 'react'
+import React, { useState } from 'react'
+import SkillInput from './Input/SkillInput'
 
 function CandidateProfile() {
+    const [tabs, setTabs] = useState("")
   return (
     <>
         <div className="col-span-10 ">
@@ -17,7 +19,10 @@ function CandidateProfile() {
                     </ul>
                     <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
                         <li className='text-3xl font-bold'>Technical Skills</li>
-                        <li className='flex items-center gap-2 p-4'> <span className='border px-2 text-xl rounded border-foreground'>+</span> Add skills</li>
+                        <button onClick={()=> setTabs("skills")} className='flex items-center gap-2 p-4 cursor-pointer'> <span className='border px-2 text-xl rounded border-foreground'>+</span> Add skills</button>
+                        {
+                            tabs == "skills" && <SkillInput setTabs={setTabs} />
+                        }
                     </ul>
                     <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
                         <li className='text-3xl font-bold'>Work Experience</li>

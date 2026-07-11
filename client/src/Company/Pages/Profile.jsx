@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
 import { MdOutlineFileUpload } from "react-icons/md";
+
 function Interview() {
     return (
         <div className='grid grid-cols-12'>
