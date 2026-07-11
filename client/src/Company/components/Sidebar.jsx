@@ -10,8 +10,8 @@ function Sidebar() {
             <div className='text-white bg-[#00b4d8] p-4 font-semibold ms-2 me-2 rounded-sm'><Link to={'/companyDashboard'}>Dashboard</Link></div><br />
             <div className='text-white p-4 font-semibold hover:bg-blue-900 ms-2 me-2 rounded-sm'><Link to={'/joblisting'}>Job Listings</Link></div><br />
             <div className='text-white p-4 font-semibold hover:bg-blue-900 ms-2 me-2 rounded-sm'><Link to={'/applicants'}>Applicants</Link></div><br />
-            <div className='text-white p-4 font-semibold hover:bg-blue-900 ms-2 me-2 rounded-sm'>Interviews</div><br />
-            <div className='text-white p-4 font-semibold hover:bg-blue-900 ms-2 me-2 rounded-sm'>Company Profile</div>
+            <div className='text-white p-4 font-semibold hover:bg-blue-900 ms-2 me-2 rounded-sm'><Link to={'/interview'}>Interviews</Link></div><br />
+            <div className='text-white p-4 font-semibold hover:bg-blue-900 ms-2 me-2 rounded-sm'><Link to={'/profile'}>Company Profile</Link></div>
           </div>
         </div>
     </div>
