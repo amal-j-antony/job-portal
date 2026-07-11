@@ -1,9 +1,48 @@
 {
-    "candidate": [
-
-    ],
-    
-    "company": [
-
-    ]
+  "candidate": [],
+  "company": [],
+  "accounts": [
+    {
+      "name": "Amal",
+      "email": "amal@gmail.com",
+      "role": "candidate",
+      "password": "qwertyuiop",
+      "id": 1
+    },
+    {
+      "name": "NexusLabs",
+      "email": "nexuslabs@gmail.com",
+      "role": "company",
+      "password": "12345678",
+      "id": 3
+    },
+    {
+      "name": "Ben",
+      "email": "benj@gmail.com",
+      "role": "candidate",
+      "password": "qwertyuiop",
+      "id": 4
+    },
+    {
+      "name": "IceDawg",
+      "email": "iced@gmail.com",
+      "role": "candidate",
+      "password": "qwertyuiop",
+      "id": 5
+    },
+    {
+      "name": "Kevin",
+      "email": "kevin@gmail.com",
+      "role": "candidate",
+      "password": "qwertyuiop",
+      "id": 6
+    },
+    {
+      "name": "Paul",
+      "email": "paul@gmail.com",
+      "role": "candidate",
+      "password": "qwertyuiop",
+      "id": 7
+    }
+  ]
 }
