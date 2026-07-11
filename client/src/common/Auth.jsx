@@ -15,8 +15,10 @@ function Auth() {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-   const [localUserData,setLocalUserData] = useState(JSON.parse(localStorage.getItem("account")))
+  const reduxAccData = useSelector(state => state.authReducer)
+  console.log(reduxAccData);
+  
+  const [reduxUserData, setReduxUserData] = useState({})
 
   const handleLogin = async () => {
     const result = await getUserByEmailAPI(account.email)
@@ -38,9 +40,16 @@ function Auth() {
       navigate(`/${localUserData.role}/${localUserData.id}/dashboard`)
     }
   }
+
   useEffect(()=> {
-    localUserData && localUserData.id != "" && navigate(`/${localUserData.role}/${localUserData.id}/dashboard`)
-  })
+      setReduxUserData(reduxAccData)
+    },[reduxAccData])
+
+  useEffect(()=> {
+    reduxAccData.accountID != "" && navigate(`/${reduxUserData.role}/${reduxUserData.accountID}/dashboard`)
+  },[reduxUserData])
+
+
   
 
   return (

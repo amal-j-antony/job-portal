@@ -5,17 +5,37 @@ import Jobs from './Jobs'
 import CandidateApplications from './CandidateApplications'
 import CandidateInterviews from './CandidateInterviews'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { initializeAccount } from '@/redux/authSlice'
 
 function CandidateOverview() {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [tab, setTab] = useState("dashboard")
+    const [localUserData, setLocalUserData] = useState(JSON.parse(localStorage.getItem("account")))
+
+
     const handleLogout = () => {
-        localStorage.setItem("account","")
+        localStorage.setItem("account", JSON.stringify({
+            name: "",
+            email: "",
+            accountID: "",
+            role: ""
+        }))
+        dispatch(initializeAccount({
+            name: "",
+            email: "",
+            accountID: "",
+            role: ""
+        }))
+        navigate("/")
+        alert("log out success")
     }
 
-    const [localUserData,setLocalUserData] = useState(JSON.parse(localStorage.getItem("account")))
-    
 
-    const navigate= useNavigate()
+
+
+
     return (
         <>
             <div className='grid grid-cols-12 min-h-screen bg-[#f5f7fb] '>
@@ -50,16 +70,16 @@ function CandidateOverview() {
                     tab == "dashboard" && <CandidateDashboard />
                 }
                 {
-                    tab == "profile" && <CandidateProfile/>
+                    tab == "profile" && <CandidateProfile />
                 }
                 {
                     tab == "jobs" && navigate("/jobs")
                 }
                 {
-                    tab == "applications" && <CandidateApplications/>
+                    tab == "applications" && <CandidateApplications />
                 }
                 {
-                    tab == "interviews" && <CandidateInterviews/>
+                    tab == "interviews" && <CandidateInterviews />
                 }
 
             </div>

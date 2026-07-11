@@ -6,6 +6,7 @@ const authSlice = createSlice({
         accountID: "",
         email: "",
         role: "",
+        name: ""
     },
 
     reducers: {
