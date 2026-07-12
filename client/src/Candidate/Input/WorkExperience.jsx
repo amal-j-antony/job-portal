@@ -38,12 +38,8 @@ function WorkExperience({ tabs, setTabs, profileData }) {
 
     return (
         <>
-            <main className='z-5 fixed inset-0 bg-black/20 backdrop-blur flex justify-center items-center'>
-                <div className="bg-slate-50 rounded-3xl p-10 flex flex-col w-2/5 ">
-                    <div className='flex justify-between items-center mb-5'>
-                        <h1 className='text-xl '>Add Work Experience</h1>
-                        <span onClick={() => setTabs("")} className='cursor-pointer' ><u>Close</u></span>
-                    </div>
+            <div className="bg-slate-50 rounded-3xl p-10 flex flex-col w-full ">
+                   
                     <div className="grid grid-cols-2 gap-5">
                         <label htmlFor="">Company Name</label>
                         <input onChange={(e) => setExperience({
@@ -84,11 +80,9 @@ function WorkExperience({ tabs, setTabs, profileData }) {
                             <button onClick={handleReset} className='flex-1 flex justify-center items-center gap-2 p-2 bg-blue-900 text-white rounded ' >Reset<RiResetLeftLine /></button>
                             <button onClick={handleSubmit} className='flex-1 flex justify-center items-center gap-2 p-2 bg-blue-800 text-white rounded ' >Submit Current record <UploadSimpleIcon /> </button>
                         </div>
-                        <button className="col-span-2 p-2 bg-blue-600 text-white flex justify-center items-center gap-2">Finish<CheckSquareIcon /> </button>
 
                     </div>
                 </div>
-            </main>
 
         </>
     )

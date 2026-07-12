@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import { Link } from 'react-router-dom'
+import { getJobPostsByCompanyAPI } from '@/services/jobPostAPI'
+import { useSelector } from 'react-redux'
 
 function JobListing() {
+  const [jobData, setJobData] = useState([])
+  const reduxAccData = useSelector(state => state.authReducer)
+  const getJobListings = async () => {
+    const result = await getJobPostsByCompanyAPI(reduxAccData.accountID)
+    console.log(result);
+    if (result.status == 200) {
+      setJobData(result.data)
+    }
+  }
+  const [reduxUserData, setReduxUserData] = useState({})
+  console.log(reduxUserData);
+  useEffect(() => {
+    setReduxUserData(reduxAccData)
+    getJobListings()
+  }, [reduxAccData])
   return (
     <div className='grid grid-cols-12'>
       <div className='col-span-2 bg-[#03045e] h-screen sticky top-0'>
@@ -18,31 +35,57 @@ function JobListing() {
         </div>
         <div className='bg-white p-5 rounded-2xl shadow-md mb-[40px]'>
           <div className='flex gap-4'>
-            <input type=""style={{width:"700px"}} className='bg-white p-3 rounded-lg border border-gray-300' placeholder='search Job'/>
-            <select name="" id="" style={{width:"200px"}} className='bg-white rounded-lg border border-gray-300'>
+            <input type="" style={{ width: "700px" }} className='bg-white p-3 rounded-lg border border-gray-300' placeholder='search Job' />
+            <select name="" id="" style={{ width: "200px" }} className='bg-white rounded-lg border border-gray-300'>
               <option value="">Status</option>
             </select>
-            <select name="" id="" style={{width:"200px"}} className='bg-white rounded-lg border border-gray-300'>
+            <select name="" id="" style={{ width: "200px" }} className='bg-white rounded-lg border border-gray-300'>
               <option value="">Location</option>
             </select>
           </div>
         </div>
-        <div className='px-[30px] bg-white rounded-2xl shadow-md'>
-            <div className='flex justify-between items-center p-4'>
-              <h1 className='font-bold text-3xl'>FrontEnd Developer</h1>
-              <h2 className='bg-green-200 p-2 rounded-sm'>open</h2>
+
+
+
+        {/* <div className='px-[30px] bg-white rounded-2xl shadow-md'>
+          <div className='flex justify-between items-center p-4'>
+            <h1 className='font-bold text-3xl'>FrontEnd Developer</h1>
+            <h2 className='bg-green-200 p-2 rounded-sm'>open</h2>
+          </div>
+          <h1 className='px-4 text-gray-500'>Kochi * Full Time</h1>
+          <div className='flex gap-[50px] px-4'>
+            <h1>👥 24 Applicants</h1>
+            <h1>📅 Posted: 3 Days Ago</h1>
+            <h1>💼 Experience: 2+ Years</h1>
+          </div>
+          <div className='px-4 flex gap-[30px] p-5 '>
+            <button className='bg-green-300 p-2 rounded-sm text-white font-bold'>Edit</button>
+            <button className='bg-red-400 p-2 rounded-sm text-white font-bold'>Delete</button>
+          </div>
+        </div> */}
+
+
+        {
+          jobData.map((item, index) => (
+            <div key={index} className='px-[30px] bg-white rounded-2xl shadow-md'>
+              <div className='flex justify-between items-center p-4'>
+                <h1 className='font-bold text-3xl'>{item.jobTitle} </h1>
+                <h2 className='bg-green-200 p-2 rounded-sm'>open</h2>
+              </div>
+              <p className="px-4 ">Description: {item.jobDescription}</p>
+              <h1 className='px-4 text-gray-500'>{item.location} * {item.employmentType} </h1>
+              <div className='flex gap-[50px] px-4'>
+                <h1>👥 24 Applicants</h1>
+                <h1>📅 Posted: 3 Days Ago</h1>
+                <h1>💼 Experience: {item.experience} Years</h1>
+              </div>
+              <div className='px-4 flex gap-[30px] p-5 '>
+                <button className='bg-green-300 p-2 rounded-sm text-white font-bold'>Edit</button>
+                <button className='bg-red-400 p-2 rounded-sm text-white font-bold'>Delete</button>
+              </div>
             </div>
-            <h1 className='px-4 text-gray-500'>Kochi * Full Time</h1>
-            <div className='flex gap-[50px] px-4'>
-              <h1>👥 24 Applicants</h1>
-              <h1>📅 Posted: 3 Days Ago</h1>
-              <h1>💼 Experience: 2+ Years</h1>
-            </div>
-            <div className='px-4 flex gap-[30px] p-5 '>
-              <button className='bg-green-300 p-2 rounded-sm text-white font-bold'>Edit</button>
-              <button className='bg-red-400 p-2 rounded-sm text-white font-bold'>Delete</button>
-            </div>
-        </div>
+          ))
+        }
       </div>
     </div>
   )

@@ -52,5 +52,29 @@
       "id": 8
     }
   ],
-  "jobListings": []
+  "jobListings": [
+    {
+      "jobTitle": "Technical Support Engineer",
+      "jobDescription": "Provide technical assistance, troubleshoot customer issues, and document recurring problems.",
+      "experience": "0",
+      "location": "Jaipur, India",
+      "employmentType": "Full-time",
+      "workMode": "On-Site",
+      "minSalary": "350000",
+      "maxSalary": "500000",
+      "id": 1
+    },
+    {
+      "jobTitle": "Machine Learning Engineer",
+      "jobDescription": "Develop and deploy machine learning models, preprocess datasets, and collaborate with product teams.",
+      "experience": "2",
+      "location": "Kochi",
+      "employmentType": "Full-time",
+      "workMode": "Hybrid",
+      "minSalary": "12000000",
+      "maxSalary": "20000000",
+      "companyId": 8,
+      "id": 2
+    }
+  ]
 }

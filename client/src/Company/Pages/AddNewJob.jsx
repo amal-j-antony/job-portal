@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { IoArrowBackSharp } from "react-icons/io5";
 import {
     Combobox,
@@ -15,10 +15,12 @@ import { addJobPostAPI } from '@/services/jobPostAPI';
 
 
 function AddNewJob() {
-    const sessionInfo = useSelector(state => state.authReducer)
+
+    const reduxAccData = useSelector(state => state.authReducer)
     const [employmentTypeValue, setEmploymentTypeValue] = useState("")
     const employmentTypes = ["Full-time", "Part-Time", "Contract", "InternShip", "Freelance"]
     const workMode = ["On-Site", "Remote", "Hybrid"]
+    const navigate = useNavigate()
 
     const [jobPostData, setJobPostData] = useState({
         jobTitle: "",
@@ -29,27 +31,28 @@ function AddNewJob() {
         workMode: "",
         minSalary: "",
         maxSalary: "",
-        companyId: sessionInfo.id
+        companyId: reduxAccData.accountID
     })
 
     console.log(jobPostData);
     console.log(employmentTypeValue);
 
     const addJobPost = async () => {
-        const hasEmptyValue = Object.values(jobPostData).some(v => v === '' )
+        const hasEmptyValue = Object.values(jobPostData).some(v => v === '')
 
-        if(hasEmptyValue){
+        if (hasEmptyValue) {
             alert("Please fill all fields")
-        }else{
+        } else {
             try {
                 const result = await addJobPostAPI(jobPostData)
                 console.log(result);
                 if (result.status > 199 && result.status < 300) {
                     alert("Job successfully added")
+                    navigate("/joblisting")
                 }
-                
+
             } catch (error) {
-                
+
             }
         }
     }
@@ -68,6 +71,17 @@ function AddNewJob() {
 
 
     }
+
+
+    console.log(reduxAccData);
+    const [reduxUserData, setReduxUserData] = useState({})
+    console.log(reduxUserData);
+    useEffect(() => {
+        setReduxUserData(reduxAccData)
+        setJobPostData({
+            ...jobPostData, companyId: reduxAccData.accountID
+        })
+    }, [reduxAccData])
 
     return (
         <>

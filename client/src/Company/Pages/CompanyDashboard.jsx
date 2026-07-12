@@ -11,7 +11,7 @@ function CompanyDashboard() {
         <div className='col-span-10 bg-[#f5f7fb]'>
           <div className='p-5 bg-white shadow-lg flex justify-between items-center'>
             <div>
-              <h1 className='text-4xl font-bold'>Welcome,J-Network</h1>
+              <h1 className='text-4xl font-bold'>Welcome</h1>
               <p className='text-gray-500'>Manage your job post and Applicants</p>
             </div>
             <div className='flex gap-5'>

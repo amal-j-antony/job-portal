@@ -25,24 +25,23 @@ function CandidateProfile() {
                     <div className="col-span-9 p-10 ">
                         <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
                             <li className='text-3xl font-bold'>Personal Details</li>
-                            <button onClick={() => setTabs("profile")} className='flex items-center gap-2 p-4 cursor-pointer'> <span className='border px-2 text-xl rounded border-foreground'>+</span> Add Personal Details</button>
-                            {
-                                tabs == "profile" && <PersonalDetailsInput setTabs={setTabs} profileData={profileData} setProfileData={setProfileData} />
-                            }
+
+                            
+                                <PersonalDetailsInput setTabs={setTabs} profileData={profileData} setProfileData={setProfileData} />
+                            
                         </ul>
                         <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
                             <li className='text-3xl font-bold'>Technical Skills</li>
-                            <button onClick={() => setTabs("skills")} className='flex items-center gap-2 p-4 cursor-pointer'> <span className='border px-2 text-xl rounded border-foreground'>+</span> Add skills</button>
-                            {
-                                tabs == "skills" && <SkillInput setTabs={setTabs} profileData={profileData} setProfileData={setProfileData} />
-                            }
+                            
+                                 <SkillInput setTabs={setTabs} profileData={profileData} setProfileData={setProfileData} />
+                            
                         </ul>
                         <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
                             <li className='text-3xl font-bold'>Work Experience</li>
-                            <button onClick={()=>setTabs("experience")} className='flex items-center gap-2 p-4 cursor-pointer'> <span className='border px-2 text-xl rounded border-foreground'>+</span> Add Experience</button>
-                            {
-                                tabs == "experience" && <WorkExperience setTabs={setTabs} profileData={profileData} setProfileData={setProfileData} />
-                            }
+                            
+                            
+                                 <WorkExperience setTabs={setTabs} profileData={profileData} setProfileData={setProfileData} />
+                            
                         </ul>
                         <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
                             <li className='text-3xl font-bold'>Projects</li>
