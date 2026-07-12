@@ -43,6 +43,14 @@
       "role": "candidate",
       "password": "qwertyuiop",
       "id": 7
+    },
+    {
+      "name": "Palantir",
+      "email": "palantir@proton.mail",
+      "role": "company",
+      "password": "qwertyuiop",
+      "id": 8
     }
-  ]
+  ],
+  "jobListings": []
 }

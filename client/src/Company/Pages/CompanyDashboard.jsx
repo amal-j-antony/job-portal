@@ -5,7 +5,7 @@ function CompanyDashboard() {
     <>
       <div className='grid grid-cols-12'>
         <div className='col-span-2 bg-[#03045e] h-screen sticky top-0'>
-          <Sidebar></Sidebar>
+          <Sidebar activeTab={"dashboard"} />
         </div>
         
         <div className='col-span-10 bg-[#f5f7fb]'>

@@ -1,10 +1,12 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
+import { Link } from 'react-router-dom'
+
 function JobListing() {
   return (
     <div className='grid grid-cols-12'>
       <div className='col-span-2 bg-[#03045e] h-screen sticky top-0'>
-        <Sidebar></Sidebar>
+        <Sidebar activeTab={"joblisting"} />
       </div>
       <div className='col-span-10 bg-[#f5f7fb] px-[100px] pt-[40px]'>
         <div className='flex justify-between pb-[40px]'>
@@ -12,7 +14,7 @@ function JobListing() {
             <h1 className='text-3xl font-bold'>Job Listings</h1>
             <p className='text-gray-500'>Manage all your active and inactive job posts.</p>
           </div>
-          <button className='bg-[#03045e] text-white font-bold p-2 rounded-lg'>+Post New Jobs</button>
+          <Link to={"/addnewjob"} className='bg-[#03045e] text-white font-bold p-2 rounded-lg flex items-center justify-center'>+Post New Jobs</Link>
         </div>
         <div className='bg-white p-5 rounded-2xl shadow-md mb-[40px]'>
           <div className='flex gap-4'>

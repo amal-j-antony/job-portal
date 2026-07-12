@@ -17,6 +17,7 @@ import Header from './common/Header'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { initializeAccount } from './redux/authSlice'
+import AddNewJob from './Company/Pages/AddNewJob'
 
 
 function App() {
@@ -39,11 +40,12 @@ function App() {
         <Route path='/' element={<Home />} />
 
         {/* Company */}
-        <Route path='/companyDashboard' element={<CompanyDashboard />} />
+        <Route path='/company/:id/dashboard' element={<CompanyDashboard />} />
         <Route path='/joblisting' element={<JobListing />} />
         <Route path='/applicants' element={<Applicants />} />
         <Route path='/interview' element={<Interview />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/addnewjob' element={<AddNewJob />} />
 
         {/* Authentication */}
         <Route path='/login' element={<Auth />} />
