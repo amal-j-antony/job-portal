@@ -12,3 +12,16 @@ export const getJobPostsByCompanyAPI = async (companyID) => {
         companyId: companyID
     })
 }
+
+//get job posts
+export const getAllJobPosts = async () => {
+    return await axiosConfig("GET",`${serverURL}/jobListings`,{})
+}
+
+//apply to job listing
+export const applyToListingAPI = async (applicants,jobID) => {
+    return await axiosConfig("PATCH",`${serverURL}/jobListings/${jobID}`,{
+        applicantID: applicants
+    })
+}
+

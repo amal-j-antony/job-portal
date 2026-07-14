@@ -1,5 +1,5 @@
 import { skills } from '@/assets/jobSkills'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Combobox,
     ComboboxChip,
@@ -16,17 +16,29 @@ import {
 import { BackspaceIcon } from '@phosphor-icons/react'
 
 
-function SkillInput({ setTabs }) {
+function SkillInput({ setTabs, addInfo ,tab, profileData }) {
     const skillNamesRaw = skills.map(item => item.name)
     const skillNames = [...new Set(skillNamesRaw)]
     const [selectedSkills, setSelectedSKills] = useState([])
     console.log(selectedSkills);
 
     const anchor = useComboboxAnchor()
+    useEffect(() => {
+        tab == "project" ? addInfo(selectedSkills, "projectSkills") : addInfo(selectedSkills, "skills");
+    }, [selectedSkills]);
+
+    useEffect(()=>{
+        setSelectedSKills(profileData.skills)
+    },[])
+
     return (
         <>
-            <div className="bg-slate-50 rounded-3xl p-10 flex flex-col  gap-5">
-                
+            <div className="bg-slate-50 rounded-3xl flex flex-col  gap-5 p-10">
+                <span>Added skills: {
+                    profileData.skills.map((item)=>(
+                        <span>{item}, </span>
+                    ))
+                    }</span>
                 <div className="">
                     <Combobox
                         value={selectedSkills}

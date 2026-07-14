@@ -1,6 +1,63 @@
 {
-  "candidate": [],
-  "company": [],
+  "candidate": [
+    {
+      "profileImage": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "fullName": "Amal",
+      "location": "gdfgsdfg",
+      "linkedin": "sdfgsdfg",
+      "github": "sdfgdsfg",
+      "phone": "352345432",
+      "email": "asdfawsdf@gmail.com",
+      "skills": [
+        "JavaScript"
+      ],
+      "workExperience": [
+        {
+          "companyName": "sdfgdsfg",
+          "jobTitle": "sdfgsdfg",
+          "jobDescription": "sdfgdsfg",
+          "startDate": "2026-07-13T15:38:24.659Z",
+          "endDate": "2026-07-13T15:38:24.659Z",
+          "duration": "0yrs",
+          "id": "a5b76103-cefa-43bf-954f-329900aa534c"
+        }
+      ],
+      "projects": [
+        {
+          "projectName": "sdfgsdfg",
+          "projectDescription": "sdgdfg",
+          "id": "8b1c3272-9650-4803-b49a-bec280c134f7"
+        }
+      ],
+      "candidateID": 1,
+      "id": 1
+    }
+  ],
+  "company": [
+    {
+      "companyImage": "https://res.cloudinary.com/dwaaoyztz/image/upload/v1784025582/Red_Black_Typography_Nine_Brand_Logo_1_dydg8w.png",
+      "companyName": "NexusLabs",
+      "industry": "Software Development",
+      "companySize": "250",
+      "yearFounded": "2018",
+      "website": "nexuslabs.space",
+      "aboutCompany": "NexusLabs develops cloud-based enterprise software, AI-powered analytics, and scalable web applications for global businesses.",
+      "linkedIn": "ssadfasdf",
+      "facebook": "asdfasdf",
+      "twitter": "sadfsadf",
+      "github": "asfasfasdf",
+      "email": "contact@nexuslabs.com",
+      "phone": "91 9876543210",
+      "address": {
+        "street": "sdfsdfasdf",
+        "city": "asdfasdfasdf",
+        "state": "asfasdf",
+        "country": "asdfasdf",
+        "pincode": "221412341234"
+      },
+      "id": "a5050573-9488-4cc6-b22c-e98d87c844ad"
+    }
+  ],
   "accounts": [
     {
       "name": "Amal",
@@ -62,7 +119,11 @@
       "workMode": "On-Site",
       "minSalary": "350000",
       "maxSalary": "500000",
-      "id": 1
+      "companyId": 3,
+      "id": 1,
+      "applicantID": [
+        1
+      ]
     },
     {
       "jobTitle": "Machine Learning Engineer",
@@ -74,7 +135,8 @@
       "minSalary": "12000000",
       "maxSalary": "20000000",
       "companyId": 8,
-      "id": 2
+      "id": 2,
+      "applicantID": []
     }
   ]
 }

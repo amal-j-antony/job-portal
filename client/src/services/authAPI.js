@@ -10,3 +10,10 @@ export const getUserByEmailAPI = async (email) => {
 export const addAccountAPI = async (data) => {
     return await axiosConfig("POST",`${serverURL}/accounts`,data)
 }
+
+// get one or more Accounts by Id
+export const getAccountAPI = async (accountID) => {
+    return await axiosConfig("GET",`${serverURL}/accounts`,{}, {
+        id: accountID
+    })
+}
