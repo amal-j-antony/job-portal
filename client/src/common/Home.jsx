@@ -5,6 +5,7 @@ import { ArrowRightIcon } from '@phosphor-icons/react'
 import HomeMarquee from './HomeMarquee'
 import { testimonials } from '@/assets/testimonial'
 import { whyChoose } from '@/assets/whyChoose'
+import Header from './Header'
 function Home() {
   const [animatedValue, setAnimatedValue] = useState({
     companies: 0,
@@ -23,7 +24,7 @@ function Home() {
   }, [])
   return (
     <>
-
+      <Header/>
       <main className='flex flex-col justify-center items-center w-full'>
         {/* hero image */}
         <section className='w-full relative text-white' >

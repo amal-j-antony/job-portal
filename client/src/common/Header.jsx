@@ -24,35 +24,30 @@ function Header() {
 
   return (
     <>
-      <main className='flex justify-center items-center bg-foreground text-white'>
-        <section className='w-[90%] flex justify-between items-center py-3 md:py-0'>
+      <main className='flex justify-center items-center bg-foreground text-white '>
+        <section className='w-[90%] flex justify-between ' >
           {/* logo */}
           <Link to={"/"} className='flex items-center'>
             <img className='h-12 md:h-20' src="https://res.cloudinary.com/dwaaoyztz/image/upload/v1783540079/Black_And_White_Modern_Vintage_Retro_Brand_Logo_2_-Photoroom_ml9as9.png" alt="" />
             <span className='font-bold text-xl md:text-2xl'>Nextra</span>
           </Link>
 
-          {/* hamburger button - mobile only */}
-          <button
-            className='lg:hidden'
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-
-          {/* other actions - desktop */}
-          <div className="hidden lg:flex gap-2 items-center text-xl font-bold">
-            {navLinks.map((link, i) => (
-              <React.Fragment key={i}>
-                <Link to={link.to} className='hover:bg-blue-900 p-5 duration-500'>{link.label}</Link>
-                <Separator orientation='vertical' className="my-5" />
-              </React.Fragment>
-            ))}
+          {/* other actions */}
+          <div className="flex gap items-center  font-bold">
+            <Link to={"/"} className='hover:bg-blue-900 p-5 duration-500'>Home</Link>
+            {/* <Separator orientation='vertical' className="my-5" /> */}
+            <Link to={"/jobs"} className='hover:bg-blue-900 p-5 duration-500 '>Find Jobs</Link>
+            {/* <Separator orientation='vertical' className="my-5" /> */}
+            <Link className='hover:bg-blue-900 p-5 duration-500 '>Hire Talent</Link>
+            {/* <Separator orientation='vertical' className="my-5" /> */}
+            <Link className='hover:bg-blue-900 p-5 duration-500 '>Premium</Link>
+            {/* <Separator orientation='vertical' className="my-5" /> */}
+            <Link to={"/contact"} className='hover:bg-blue-900 p-5 duration-500 '>Contact Us</Link>
+            {/* <Separator orientation='vertical' className="my-5" /> */}
             {
               reduxUserData.accountID != "" ?
-                <div>
-                  <Link to={"/login"} className='flex gap-2 items-center hover:bg-blue-900 p-5 duration-500'>
-                    Dashboard
+                <div className="">
+                  <Link to={"/login"} className='flex gap-4 items-center hover:bg-blue-900 p-5 duration-500 '>Dashboard
                     <img src="https://res.cloudinary.com/dwaaoyztz/image/upload/v1783783482/user_s1wtzw.png" className='h-10' alt="" />
                   </Link>
                 </div>

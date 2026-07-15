@@ -1,52 +1,202 @@
 import { PlusIcon } from '@phosphor-icons/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SkillInput from './Input/SkillInput'
+import PersonalDetailsInput from './Input/PersonalDetailsInput'
+import WorkExperience from './Input/WorkExperience'
+import ProjectsInput from './Input/ProjectsInput'
+import { addCandidateProfileAPI, editCandidateDataAPI, getCandidateByIdAPI } from '@/services/candidateAPI'
+import { useSelector } from 'react-redux'
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
 function CandidateProfile() {
-    const [tabs, setTabs] = useState("")
-  return (
-    <>
-        <div className="col-span-10 ">
-            <div className="  grid grid-cols-12 gap">
-                <div className="col-span-9 p-10 ">
-                    <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
-                        <li className='text-3xl font-bold'>Personal Details</li>
-                        <li>Full Name</li>
-                        <li>Email</li>
-                        <li>Location</li>
-                        <li>Github</li>
-                        <li>Linkedin</li>
-                    </ul>
-                    <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
-                        <li className='text-3xl font-bold'>Technical Skills</li>
-                        <button onClick={()=> setTabs("skills")} className='flex items-center gap-2 p-4 cursor-pointer'> <span className='border px-2 text-xl rounded border-foreground'>+</span> Add skills</button>
-                        {
-                            tabs == "skills" && <SkillInput setTabs={setTabs} />
-                        }
-                    </ul>
-                    <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
-                        <li className='text-3xl font-bold'>Work Experience</li>
-                        <li className='flex items-center gap-2 p-4'> <span className='border px-2 text-xl rounded border-foreground'>+</span> Add Experience</li>
-                    </ul>
-                    <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
-                        <li className='text-3xl font-bold'>Projects</li>
-                        <li className='flex items-center gap-2 p-4'> <span className='border px-2 text-xl rounded border-foreground'>+</span> Add Projects</li>
-                    </ul>
+    const [modal,setModal] = useState(false)
+    const [pfp,setPfp] = useState()
+    const [profileData, setProfileData] = useState({
+        profileImage: "https://res.cloudinary.com/dwaaoyztz/image/upload/v1783783482/user_s1wtzw.png",
+        fullName: "",
+        location: "",
+        linkedin: "",
+        github: "",
+        phone: "",
+        email: "",
+        skills: [],
+        workExperience: [],
+        projects: []
+    })
 
-                    <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
-                        <li className='text-3xl font-bold'>Education</li>
-                        <li className='flex items-center gap-2 p-4'> <span className='border px-2 text-xl rounded border-foreground'>+</span> Add Projects</li>
-                    </ul>
-                </div>
-                <div className="col-span-3 pt-10 sticky top-0 h-10">
-                    <div className="bg-slate-50 rounded-3xl">
-                        <img className='p-10 rounded-full' src="https://res.cloudinary.com/dwaaoyztz/image/upload/v1782669472/samples/man-on-a-street.jpg" alt="" />
+    const [editMode, setEditMode] = useState(false)
+    let isExisting = false
+    console.log("existingProfile",isExisting);
+    
+    const getProfile = async () => {
+        try {
+            const result = await getCandidateByIdAPI(reduxAccData.accountID)
+            console.log(result.data);
+            if (result.status > 199 && result.status < 300) {
+                isExisting = true
+                console.log("existingprofile",isExisting);
+                
+                setProfileData(result.data[0])
+                if (result.data.profileImage == "") {
+                    setProfileData(
+                        {
+                            ...profileData,
+                            profileImage: result.data.profileImage
+                        }
+                    )
+                }
+            }
+
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const [tabs, setTabs] = useState("")
+
+    const reduxAccData = useSelector(state => state.authReducer)
+
+
+    console.log(profileData);
+    console.log(profileData.workExperience);
+
+
+    const addInfo = (e, value) => {
+
+        if (value == "skills" || value == "profileImage") {
+            setProfileData({
+                ...profileData, [value]: e
+            })
+        } else {
+            setProfileData({
+                ...profileData, [value]: e.target.value
+            })
+        }
+
+
+    }
+
+    const handleSubmit = async () => {
+
+        const hasEmptyVal = Object.values(profileData).some(val => val == '' || val == [])
+        if (hasEmptyVal) {
+            alert("Please fill all sections")
+        } else {
+            if (!profileData.id) {
+                try {
+                    const result = await addCandidateProfileAPI({
+                        ...profileData,
+                        candidateID: reduxUserData.accountID,
+                        id: crypto.randomUUID()
+                    })
+                    if (result.status > 199 && result.status < 300) {
+                        console.log("success");
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            } else {
+                try {
+                    const result = await editCandidateDataAPI(profileData.id,profileData)
+                    if (result.status > 199 && result.status < 300) {
+                        alert("Profile updated successfully");
+                    }
+                } catch (error) {
+
+                }
+            }
+        }
+    }
+
+    console.log(reduxAccData);
+    const [reduxUserData, setReduxUserData] = useState({})
+    console.log(reduxUserData);
+    useEffect(() => {
+        setReduxUserData(reduxAccData)
+    }, [reduxAccData])
+
+    useEffect(() => {
+        getProfile()
+    }, [reduxAccData])
+
+    return (
+        <>
+            <div className="col-span-10 ">
+                <div className="  grid grid-cols-12 gap">
+                    <div className="col-span-9 p-10 ">
+                        <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
+                            <li className='text-3xl font-bold'>Personal Details</li>
+
+
+                            <PersonalDetailsInput setTabs={setTabs} profileData={profileData} setProfileData={setProfileData} addInfo={addInfo} editMode={editMode} />
+
+                        </ul>
+                        <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
+                            <li className='text-3xl font-bold'>Technical Skills</li>
+
+                            <SkillInput setTabs={setTabs} profileData={profileData} setProfileData={setProfileData} addInfo={addInfo} />
+
+                        </ul>
+                        <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
+                            <li className='text-3xl font-bold'>Work Experience</li>
+
+
+                            <WorkExperience setTabs={setTabs} profileData={profileData} setProfileData={setProfileData} addInfo={addInfo} />
+
+                        </ul>
+                        <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
+                            <li className='text-3xl font-bold'>Projects</li>
+                            <ProjectsInput setTabs={setTabs} profileData={profileData} setProfileData={setProfileData} addInfo={addInfo} />
+                        </ul>
+
+                        {/* <ul className='bg-slate-50 rounded-3xl shadow-lg p-10 mb-10'>
+                            <li className='text-3xl font-bold'>Education</li>
+                            <li className='flex items-center gap-2 p-4'> <span className='border px-2 text-xl rounded border-foreground'>+</span> Add Projects</li>
+                        </ul> */}
+
+                        <button onClick={handleSubmit} className="bg-blue-500 text-white p-10 w-full rounded-3xl shadow-lg text-2xl cursor-pointer">Update Profile</button>
                     </div>
+                    <div className="col-span-3 pt-10 sticky top-0 h-10 ">
+                        <div className="bg-white rounded-3xl shadow-lg group relative">
+                            <img className='p-10 rounded-full object-cover h-100 w-100' src={profileData.profileImage} alt="" />
+                            <div className='flex gap-3 p-5'>
+                                <button onClick={()=>setModal(true)} className="px-1 rounded-xl py-4 text-center bg-blue-600 text-white">Update profile picture</button>
+                                <button className="px-1 rounded-xl py-4 text-center bg-blue-900 text-white">Delete profile picture</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+                {/* modal for img upload */}
+                <Dialog
+                open={modal} >
+              <DialogContent showCloseButton={false}>
+                    <DialogHeader>
+                        <p className='text-lg'>Add image URL for profile picture</p>
+                    </DialogHeader>
+                    <input onChange={(e) => setPfp(e.target.value)} className='py-2 border' type="text" value={pfp} />
+                    <div className='grid grid-cols-2 gap-2 w-full'>
+                        <button onClick={() => {setModal(false)
+                            
+                        }} className='rounded py-2 cursor-pointer bg-foreground text-white' >Cancel</button>
+                        <button onClick={() => {
+                            addInfo(pfp, "profileImage")
+                            setModal(false)
+                        }} className='rounded py-2 cursor-pointer bg-blue-600 text-white' >Submit</button>
+                    </div>
+                </DialogContent>
+            </Dialog>
             </div>
-        </div>
-    </>
-  )
+        </>
+    )
 }
 
 export default CandidateProfile

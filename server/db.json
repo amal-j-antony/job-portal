@@ -1,6 +1,88 @@
 {
-  "candidate": [],
-  "company": [],
+  "candidate": [
+    {
+      "profileImage": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "fullName": "Amal",
+      "location": "gdfgsdfg",
+      "linkedin": "sdfgsdfg",
+      "github": "sdfgdsfg",
+      "phone": "352345432",
+      "email": "asdfawsdf@gmail.com",
+      "skills": [
+        "JavaScript"
+      ],
+      "workExperience": [
+        {
+          "companyName": "sdfgdsfg",
+          "jobTitle": "sdfgsdfg",
+          "jobDescription": "sdfgdsfg",
+          "startDate": "2026-07-13T15:38:24.659Z",
+          "endDate": "2026-07-13T15:38:24.659Z",
+          "duration": "0yrs",
+          "id": "a5b76103-cefa-43bf-954f-329900aa534c"
+        }
+      ],
+      "projects": [
+        {
+          "projectName": "sdfgsdfg",
+          "projectDescription": "sdgdfg",
+          "id": "8b1c3272-9650-4803-b49a-bec280c134f7"
+        }
+      ],
+      "candidateID": 1,
+      "id": "3a8ce953-9f94-4868-b233-689bcab9a20e"
+    }
+  ],
+  "company": [
+    {
+      "companyImage": "https://res.cloudinary.com/dwaaoyztz/image/upload/v1784025582/Red_Black_Typography_Nine_Brand_Logo_1_dydg8w.png",
+      "companyID": 3,
+      "companyName": "NexusLabs",
+      "industry": "Software Development",
+      "companySize": "250",
+      "yearFounded": "2018",
+      "website": "nexuslabs.space",
+      "aboutCompany": "NexusLabs develops cloud-based enterprise software, AI-powered analytics, and scalable web applications for global businesses.",
+      "linkedIn": "ssadfasdf",
+      "facebook": "asdfasdf",
+      "twitter": "sadfsadf",
+      "github": "asfasfasdf",
+      "email": "contact@nexuslabs.com",
+      "phone": "91 9876543210",
+      "address": {
+        "street": "sdfsdfasdf",
+        "city": "asdfasdfasdf",
+        "state": "asfasdf",
+        "country": "asdfasdf",
+        "pincode": "221412341234"
+      },
+      "id": "a5050573-9488-4cc6-b22c-e98d87c844ad"
+    },
+    {
+      "companyImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM6n8cxK1CdnuARVYyvZWXXw_pK6yYnsyUh4RdRNFpNg&s",
+      "companyName": "Palantir",
+      "industry": "Defense",
+      "companySize": "300",
+      "yearFounded": "2020",
+      "website": "palantir.com",
+      "aboutCompany": "Palantir Technologies is a prominent American software company specializing in big data analytics, intelligence gathering, and AI-driven enterprise applications. Originally funded by the CIA’s venture arm, it supplies critical data systems to government, defense, and commercial clients globally.Key facets of the company include:Core Platforms: Palantir operates primarily through its main platforms: Gotham (used heavily by defense and intelligence agencies for data integration and mapping), Foundry (an operating system for enterprise data), and AIP (Artificial Intelligence Platform).Commercial and Government Expansion: While the company's roots are firmly planted in intelligence and military work, it has vastly expanded into the corporate sector, providing complex supply chain and operational data management.Market Position: Listed as a public entity, Palantir has become a significant player in the artificial intelligence market, often experiencing rapid year-over-year revenue growth.Controversies: The company’s deep involvement with military applications, immigration enforcement (e.g., ICE), and intelligence networks has made it a focal point of privacy and civil rights activism.",
+      "linkedIn": "sadfasdf",
+      "facebook": "asdfasdf",
+      "twitter": "asdfasdf",
+      "github": "asdfasdf",
+      "email": "asdfsdf",
+      "phone": "124234",
+      "address": {
+        "street": "sdfsadf",
+        "city": "dfsghwert",
+        "state": "sfasdfwrtaew",
+        "country": "wqerqwr",
+        "pincode": "2141234234"
+      },
+      "companyID": 8,
+      "id": "7811e801-03e9-4861-aec2-0d035a43d2d0"
+    }
+  ],
   "accounts": [
     {
       "name": "Amal",
@@ -43,6 +125,48 @@
       "role": "candidate",
       "password": "qwertyuiop",
       "id": 7
+    },
+    {
+      "name": "Palantir",
+      "email": "palantir@proton.mail",
+      "role": "company",
+      "password": "qwertyuiop",
+      "id": 8
+    }
+  ],
+  "jobListings": [
+    {
+      "jobTitle": "Technical Support Engineer",
+      "jobDescription": "Provide technical assistance, troubleshoot customer issues, and document recurring problems.",
+      "experience": "0",
+      "location": "Jaipur, India",
+      "employmentType": "Full-time",
+      "workMode": "On-Site",
+      "minSalary": "350000",
+      "maxSalary": "500000",
+      "companyId": 3,
+      "id": "e280cd4b-c124-43ad-bc25-3f9290a3f95b"
+    },
+    {
+      "jobTitle": "Machine Learning Engineer",
+      "jobDescription": "Develop and deploy machine learning models, preprocess datasets, and collaborate with product teams.",
+      "experience": "2",
+      "location": "Kochi",
+      "employmentType": "Full-time",
+      "workMode": "Hybrid",
+      "minSalary": "12000000",
+      "maxSalary": "20000000",
+      "companyId": 8,
+      "id": "a194039a-d21e-4917-a965-c040c4475838"
+    }
+  ],
+  "applications": [
+    {
+      "listingID": "e280cd4b-c124-43ad-bc25-3f9290a3f95b",
+      "applicantID": 1,
+      "status": "Pending",
+      "appliedOn": "2026-07-15T12:17:30.207Z",
+      "id": "08f93f50-d92c-4bd6-beb9-8c23322f7995"
     }
   ]
 }
