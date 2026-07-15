@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog"
 import { addCompanyProfileAPI, getProfileByCompanyID_API, updateCompanyProfileAPI } from '@/services/companyAPI';
 import { useSelector } from 'react-redux';
+import { toast } from 'sonner';
 
 function Interview() {
     const [dialogOpen, setDialogOpen] = useState(false)
@@ -45,8 +46,8 @@ function Interview() {
     const getCompanyProfile = async () => {
         if (reduxAccData.accountID) {
             const result = await getProfileByCompanyID_API(reduxAccData.accountID)
-            console.log("getProfileByCompanyID_API",result);
-            if(result.data.length == 1){
+            console.log("getProfileByCompanyID_API", result);
+            if (result.data.length == 1) {
                 setCompanyProfile(result.data[0])
             }
         }
@@ -149,13 +150,23 @@ function Interview() {
         if (companyProfile.id) {
             const result = await updateCompanyProfileAPI(companyProfile.id, companyProfile)
             console.log("updateCompanyProfileAPI", result);
+             if (result.status > 199 && result.status < 300) {
+                toast.success("Profile updated", { position: "top-center" })
+                getCompanyProfile()
+            }
+
 
         } else {
             const result = await addCompanyProfileAPI({
                 ...companyProfile,
+                companyID: reduxAccData.accountID,
                 id: crypto.randomUUID()
             })
             console.log("addCompanyProfileAPI", result);
+            if (result.status > 199 && result.status < 300) {
+                toast.success("Profile updated", { position: "top-center" })
+                getCompanyProfile()
+            }
 
         }
     }
@@ -185,9 +196,9 @@ function Interview() {
         })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getCompanyProfile()
-    },[reduxAccData])
+    }, [reduxAccData])
     return (
         <div className='grid grid-cols-12'>
             <div className='col-span-2 bg-[#03045e] h-screen sticky top-0'>

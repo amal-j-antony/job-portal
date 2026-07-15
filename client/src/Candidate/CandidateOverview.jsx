@@ -40,8 +40,10 @@ function CandidateOverview() {
         <>
             <div className='grid grid-cols-12 min-h-screen bg-[#f5f7fb] '>
                 <div className='col-span-2 bg-slate-50 h-screen rounded-3xl sticky top-0 shadow-lg '>
+                    
                     <h1 className='text-3xl font-bold text-center my-9'>Welcome,{localUserData.name}</h1>
                     <div className='flex flex-col items-stretch text-center gap-5 '>
+
                         <div onClick={() => setTab("dashboard")} className={
                             tab == 'dashboard' ? 'cursor-pointer p-4 bg-foreground text-white font-semibold  ms-2 me-2 rounded-sm'
                                 : 'cursor-pointer hover:text-white p-4 font-semibold  hover:bg-blue-900 ms-2 me-2 rounded-sm duration-500'

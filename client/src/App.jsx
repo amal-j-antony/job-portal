@@ -18,6 +18,7 @@ import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { initializeAccount } from './redux/authSlice'
 import AddNewJob from './Company/Pages/AddNewJob'
+import { Toaster } from 'sonner'
 
 
 function App() {
@@ -35,7 +36,8 @@ function App() {
 
   return (
     <>
-    <Header/>
+    
+    <Toaster/>
       <Routes>
         <Route path='/' element={<Home />} />
 

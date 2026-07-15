@@ -2,6 +2,7 @@ import { initializeAccount } from '@/redux/authSlice'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 function Sidebar({ activeTab }) {
   const companyInfo = useSelector(state => state.authReducer)
   const dispatch = useDispatch()
@@ -28,12 +29,15 @@ function Sidebar({ activeTab }) {
       role: ""
     }))
     navigate("/")
-    alert("log out success")
+    toast.success("log out successful", { position: "top-center" })
   }
 
   return (
     <div>
       <div className='col-span-2 bg-[#03045e] h-screen sticky top-0'>
+        <div className='flex justify-center items-center'>
+          <img onClick={() => navigate("/")} src="https://res.cloudinary.com/dwaaoyztz/image/upload/v1783449552/Red_Network_Globe_jzbftj.svg" alt="" className="cursor-pointer w-40" />
+        </div>
         <h1 className='text-3xl font-bold text-white text-center mt-9'>{companyInfo.name} </h1>
         <p className='text-gray-300 text-center mt-1 mb-8'>Company Panel</p>
         <div className='text-center'>

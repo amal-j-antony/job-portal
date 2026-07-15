@@ -3,6 +3,7 @@ import { getUserByEmailAPI } from '@/services/authAPI'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
 
 function Auth() {
@@ -34,10 +35,10 @@ function Auth() {
       }
       console.log(accDataStore);
       
-      alert("login success")
+      toast.success("login success",{position: "top-center"})
       localStorage.setItem("account",JSON.stringify(accDataStore))
       dispatch(initializeAccount(accDataStore))
-      navigate(`/${localUserData.role}/${localUserData.id}/dashboard`)
+      navigate(`/${accDataStore.role}/${accDataStore.id}/dashboard`)
     }
   }
 

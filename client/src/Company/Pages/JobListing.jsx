@@ -9,7 +9,7 @@ function JobListing() {
   const reduxAccData = useSelector(state => state.authReducer)
   const getJobListings = async () => {
     const result = await getJobPostsByCompanyAPI(reduxAccData.accountID)
-    console.log(result);
+    console.log("getJobPostsByCompanyAPI",result);
     if (result.status == 200) {
       setJobData(result.data)
     }
@@ -75,9 +75,9 @@ function JobListing() {
               <p className="px-4 ">Description: {item.jobDescription}</p>
               <h1 className='px-4 text-gray-500'>{item.location} * {item.employmentType} </h1>
               <div className='flex gap-[50px] px-4'>
-                <h1>👥 24 Applicants</h1>
-                <h1>📅 Posted: 3 Days Ago</h1>
-                <h1>💼 Experience: {item.experience} Years</h1>
+                <h1>👥 Applicants: {item?.applicantID?.length} </h1>
+                {/* <h1>📅 Posted: 3 Days Ago</h1> */}
+                <h1>💼 Min Experience: {item.experience} Years</h1>
               </div>
               <div className='px-4 flex gap-[30px] p-5 '>
                 <button className='bg-green-300 p-2 rounded-sm text-white font-bold'>Edit</button>

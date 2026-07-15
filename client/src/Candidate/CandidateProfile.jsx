@@ -6,8 +6,18 @@ import WorkExperience from './Input/WorkExperience'
 import ProjectsInput from './Input/ProjectsInput'
 import { addCandidateProfileAPI, editCandidateDataAPI, getCandidateByIdAPI } from '@/services/candidateAPI'
 import { useSelector } from 'react-redux'
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
 function CandidateProfile() {
+    const [modal,setModal] = useState(false)
+    const [pfp,setPfp] = useState()
     const [profileData, setProfileData] = useState({
         profileImage: "https://res.cloudinary.com/dwaaoyztz/image/upload/v1783783482/user_s1wtzw.png",
         fullName: "",
@@ -61,7 +71,7 @@ function CandidateProfile() {
 
     const addInfo = (e, value) => {
 
-        if (value == "skills") {
+        if (value == "skills" || value == "profileImage") {
             setProfileData({
                 ...profileData, [value]: e
             })
@@ -84,7 +94,8 @@ function CandidateProfile() {
                 try {
                     const result = await addCandidateProfileAPI({
                         ...profileData,
-                        candidateID: reduxUserData.accountID
+                        candidateID: reduxUserData.accountID,
+                        id: crypto.randomUUID()
                     })
                     if (result.status > 199 && result.status < 300) {
                         console.log("success");
@@ -157,13 +168,32 @@ function CandidateProfile() {
                         <div className="bg-white rounded-3xl shadow-lg group relative">
                             <img className='p-10 rounded-full object-cover h-100 w-100' src={profileData.profileImage} alt="" />
                             <div className='flex gap-3 p-5'>
-                                <button className="px-1 rounded-xl py-4 text-center bg-blue-600 text-white">Update profile picture</button>
+                                <button onClick={()=>setModal(true)} className="px-1 rounded-xl py-4 text-center bg-blue-600 text-white">Update profile picture</button>
                                 <button className="px-1 rounded-xl py-4 text-center bg-blue-900 text-white">Delete profile picture</button>
                             </div>
                         </div>
                     </div>
 
                 </div>
+                {/* modal for img upload */}
+                <Dialog
+                open={modal} >
+              <DialogContent showCloseButton={false}>
+                    <DialogHeader>
+                        <p className='text-lg'>Add image URL for profile picture</p>
+                    </DialogHeader>
+                    <input onChange={(e) => setPfp(e.target.value)} className='py-2 border' type="text" value={pfp} />
+                    <div className='grid grid-cols-2 gap-2 w-full'>
+                        <button onClick={() => {setModal(false)
+                            
+                        }} className='rounded py-2 cursor-pointer bg-foreground text-white' >Cancel</button>
+                        <button onClick={() => {
+                            addInfo(pfp, "profileImage")
+                            setModal(false)
+                        }} className='rounded py-2 cursor-pointer bg-blue-600 text-white' >Submit</button>
+                    </div>
+                </DialogContent>
+            </Dialog>
             </div>
         </>
     )
