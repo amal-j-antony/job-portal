@@ -54,7 +54,7 @@ function App() {
         <Route path='/register' element={<Register />} />
 
         {/* Contact */}
-        <Route path='/contact' element={<Contact />} />
+        <Route path='/contact' element={<Contact />} /> 
 
         {/* jobs */}
         <Route path='/jobs' element={<Jobs />} />

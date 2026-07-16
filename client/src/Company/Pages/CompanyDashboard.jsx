@@ -1,12 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { getApplicationsAPI } from '@/services/applicantAPI'
+// import getJobListingsByCompanyID_API from '@/services/companyAPI'
+
 function CompanyDashboard() {
   const navigate = useNavigate()
+  const { id } = useParams()   
+  const companyID = Number(id)
+
+  const [stats, setStats] = useState({
+    activeJobs: 0,
+    applications: 0,
+    interviewsToday: 0,
+    positionsFilled: 0,
+  })
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const jobsRes = await getJobListingsByCompanyID_API(companyID)
+        const appsRes = await getApplicationsAPI()
+
+        const jobListings = jobsRes.data
+        const applications = appsRes.data
+
+        const companyJobIds = new Set(jobListings.map((job) => job.id))
+
+        const companyApplications = applications.filter((app) =>
+          companyJobIds.has(app.listingID)
+        )
+
+        const positionsFilled = companyApplications.filter(
+          (app) => app.status === 'Hired' || app.status === 'Filled'
+        ).length
+
+        setStats({
+          activeJobs: jobListings.length,
+          applications: companyApplications.length,
+          interviewsToday: 0,
+          positionsFilled,
+        })
+      } catch (err) {
+        console.error('Failed to load dashboard stats:', err)
+      } 
+    }
+
+    if (companyID) fetchStats()
+  }, [companyID])
+
   return (
     <>
       <div className='grid grid-cols-12'>
-        
         <div className='col-span-2 bg-[#03045e] h-screen sticky top-0'>
           <Sidebar activeTab={"dashboard"} />
         </div>
@@ -25,21 +71,30 @@ function CompanyDashboard() {
           <div className='grid grid-cols-12 ps-12 pe-12 pt-[40px] gap-4'>
             <div className='col-span-3 bg-white shadow-lg p-6 rounded-2xl'>
               <h1 className='pb-3 text-gray-500'>Active Jobs</h1>
-              <h1 className='text-5xl font-bold text-[#03045e]'>12</h1>
+              <h1 className='text-5xl font-bold text-[#03045e]'>
+                {loading ? '...' : stats.activeJobs}
+              </h1>
             </div>
             <div className='col-span-3 bg-white shadow-lg p-6 rounded-2xl'>
               <h1 className='pb-3 text-gray-500'>Applications</h1>
-              <h1 className='text-5xl font-bold text-[#03045e]'>148</h1>
+              <h1 className='text-5xl font-bold text-[#03045e]'>
+                {loading ? '...' : stats.applications}
+              </h1>
             </div>
             <div className='col-span-3 bg-white shadow-lg p-6 rounded-2xl'>
               <h1 className='pb-3 text-gray-500'>Interview Today</h1>
-              <h1 className='text-5xl font-bold text-[#03045e]'>6</h1>
+              <h1 className='text-5xl font-bold text-[#03045e]'>
+                {loading ? '...' : stats.interviewsToday}
+              </h1>
             </div>
             <div className='col-span-3 bg-white shadow-lg p-6 rounded-2xl'>
               <h1 className='pb-3 text-gray-500'>Total Positions Filled</h1>
-              <h1 className='text-5xl font-bold text-[#03045e]'>18</h1>
+              <h1 className='text-5xl font-bold text-[#03045e]'>
+                {loading ? '...' : stats.positionsFilled}
+              </h1>
             </div>
           </div>
+
           <div className='grid grid-cols-12 ps-12 pe-12 pt-[40px] gap-4'>
             <div className='col-span-8'>
               <div className='flex justify-between items-center'>
