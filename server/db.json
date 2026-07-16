@@ -8,9 +8,7 @@
       "github": "sdfgdsfg",
       "phone": "352345432",
       "email": "asdfawsdf@gmail.com",
-      "skills": [
-        "JavaScript"
-      ],
+      "skills": ["JavaScript"],
       "workExperience": [
         {
           "companyName": "sdfgdsfg",
@@ -18,7 +16,7 @@
           "jobDescription": "sdfgdsfg",
           "startDate": "2016-07-13T15:38:24.659Z",
           "endDate": "2026-07-13T15:38:24.659Z",
-          "duration": "0yrs",
+          "duration": "10yrs",
           "id": "a5b76103-cefa-43bf-954f-329900aa534c"
         }
       ],
@@ -132,6 +130,13 @@
       "role": "company",
       "password": "qwertyuiop",
       "id": 8
+    },
+    {
+      "name": "Phaeton Tech",
+      "email": "phaeton@gmail.com",
+      "role": "company",
+      "password": "12345678",
+      "id": 9
     }
   ],
   "jobListings": [
@@ -158,6 +163,17 @@
       "maxSalary": "20000000",
       "companyId": 8,
       "id": "a194039a-d21e-4917-a965-c040c4475838"
+    },
+    {
+      "jobTitle": "Product Manager",
+      "jobDescription": "Define product strategy, gather requirements, prioritize features, and coordinate with cross-functional teams.",
+      "experience": "3",
+      "location": "Delhi, India",
+      "employmentType": "Full-time",
+      "workMode": "On-Site",
+      "minSalary": "1800000",
+      "maxSalary": "2800000",
+      "id": "GVi_mUa"
     }
   ],
   "applications": [

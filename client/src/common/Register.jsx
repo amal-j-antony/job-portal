@@ -72,7 +72,7 @@ function Register() {
                                     step: 1,
                                     role: "candidate"
                                 })
-                            }} className='flex-1  border border-slate-400 hover:bg-blue-900 p-5 duration-500 hover:text-white rounded-3xl text-center cursor-pointer'>
+                            }} className='flex-1  border  hover:bg-blue-900 p-5 duration-500 hover:text-white rounded-3xl text-center cursor-pointer'>
                                 <h1>I want to apply for jobs</h1>
                                 <img src="https://res.cloudinary.com/dwaaoyztz/image/upload/v1783532863/Business_Plan-amico_oz63qm.png" className='h-50 mx-auto' alt="image" />
                             </div>
@@ -81,7 +81,7 @@ function Register() {
                                     step: 1,
                                     role: "company"
                                 })
-                            }} className='flex-1 border border-slate-400 p-5 rounded-3xl text-center hover:bg-blue-900 duration-500 hover:text-white cursor-pointer'>
+                            }} className='flex-1 border  p-5 rounded-3xl text-center hover:bg-blue-900 duration-500 hover:text-white cursor-pointer'>
                                 <h1>I want to hire talent for my firm</h1>
                                 <img src="https://res.cloudinary.com/dwaaoyztz/image/upload/v1783532865/Business_Plan-cuate_kcpohl.png" className='h-50 mx-auto' alt="" />
                             </div>
