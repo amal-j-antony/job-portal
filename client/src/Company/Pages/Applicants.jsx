@@ -4,10 +4,18 @@ import { getJobPostsByCompanyAPI } from '@/services/jobPostAPI'
 import { useSelector } from 'react-redux'
 import { getAllApplicationsAPI } from '@/services/applicantAPI'
 import JobListing from './JobListing'
+import { getAllCandidateProfilesAPI } from '@/services/candidateAPI'
+import { format } from 'date-fns'
+import ResumeDialog from '../components/ResumeDialog'
 function Applicants() {
     const reduxAccData = useSelector(state => state.authReducer)
     const [applicantData, setApplicantData] = useState([])
     const [jobInfo, setJobInfo] = useState([])
+    const [candidateData, setCandidateData] = useState([])
+    const [viewResume,setViewresume] = useState({
+        modalStatus: false,
+        data: {}
+    })
 
     const getApplications = async () => {
         try {
@@ -30,6 +38,28 @@ function Applicants() {
             console.log(error);
 
         }
+
+        try {
+            const candidateResult = await getAllCandidateProfilesAPI()
+            console.log("candidateAPI", candidateResult);
+
+            if (candidateResult.status == 200) {
+                setCandidateData(candidateResult.data)
+            }
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
+    const calcWorkExperience = (workExperience) => {
+        const val = workExperience?.reduce((a,b)=> {
+            const start = new Date(b.startDate)
+            const end = new Date(b.endDate)
+            return a + (end - start)
+        },0)
+        console.log("experience",val);
+        return Math.floor(val/(1000*60*60*24*365))
     }
 
     useEffect(() => {
@@ -73,47 +103,52 @@ function Applicants() {
                         </thead>
 
                         <tbody>
-                            <tr className="hover:bg-gray-50 transition duration-200">
-                                <td className="px-6 py-5">
-                                    <h2 className="font-semibold text-gray-800">John Mathew</h2>
-                                    <p className="text-sm text-gray-500">john@email.com</p>
-                                </td>
-                                <td className="px-6 py-5 font-medium text-gray-700">Frontend Developer</td>
-                                <td className="px-6 py-5 text-gray-600">2 Years</td>
-                                <td className="px-6 py-5 text-gray-600">Today</td>
-                                <td className="px-6 py-5 text-center">
-                                    <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">New</span>
-                                </td>
-                                <td className="px-6 py-5">
-                                    <div className="flex justify-center gap-2">
-                                        <button className="px-4 py-2 bg-[#03045e] text-white rounded-lg text-sm font-medium hover:bg-[#023e8a] transition">
-                                            View
-                                        </button>
-                                        <button className="px-4 py-2 bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-600 transition">
-                                            Shortlist
-                                        </button>
-                                        <button className="px-4 py-2 bg-red-500 text-white rounded-lg text-sm font-medium hover:bg-red-600 transition">
-                                            Reject
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                            
+                            {
+                                jobInfo.map(item => {
+                                    return applicantData.map(applicant => {
+                                        if (applicant.listingID == item.id) {
+                                            const candidateInfo = candidateData.find((candidate => candidate.candidateID == applicant.applicantID))
+                                            return (
+                                                <tr className="hover:bg-gray-50 transition duration-200">
+                                                    <td className="px-6 py-5">
+                                                        <h2 className="font-semibold text-gray-800">{candidateInfo?.fullName}</h2>
+                                                        <p className="text-sm text-gray-500">{candidateInfo?.email}</p>
+                                                    </td>
+                                                    <td className="px-6 py-5 font-medium text-gray-700">{item.jobTitle}</td>
+                                                    <td className="px-6 py-5 text-gray-600">{calcWorkExperience(candidateInfo?.workExperience)} Years</td>
+                                                    <td className="px-6 py-5 text-gray-600">{format(applicant.appliedOn, "PP")}</td>
+                                                    <td className="px-6 py-5 text-center">
+                                                        <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">{applicant.status}</span>
+                                                    </td>
+                                                    <td className="px-6 py-5">
+                                                        <div className="flex justify-center gap-2">
+                                                            <button onClick={()=>setViewresume({
+                                                                modalStatus: true,
+                                                                data: candidateInfo
+                                                            })} className="px-4 py-2 bg-[#03045e] text-white rounded-lg text-sm font-medium hover:bg-[#023e8a] transition">
+                                                                View
+                                                            </button>
+                                                            <button className="px-4 py-2 bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-600 transition">
+                                                                Shortlist
+                                                            </button>
+                                                            <button className="px-4 py-2 bg-red-500 text-white rounded-lg text-sm font-medium hover:bg-red-600 transition">
+                                                                Reject
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        }
+                                    })
+                                })
+                            }
                         </tbody>
                     </table>
                 </div>
-                <div className="">
-                    {
-                        jobInfo.map(item => {
-                            applicantData.map(applicant => {
-                                if (applicant.listingID == item.id) {
-                                    <div className="">
-                                        <h1></h1>
-                                    </div>
-                                }
-                            })
-                        })
-                    }
-                </div>
+                {
+                    viewResume.modalStatus && <ResumeDialog setViewresume={setViewresume} viewResume={viewResume}/>
+                }
             </div>
         </div>
     )

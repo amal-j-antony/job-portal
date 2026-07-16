@@ -17,3 +17,8 @@ export const addCandidateProfileAPI = async (body) => {
 export const editCandidateDataAPI = async (candidateProfileID,data) => {
     return await axiosConfig("PUT",`${serverURL}/candidate/${candidateProfileID}`,data)
 }
+
+//get all candidate data
+export const getAllCandidateProfilesAPI = async () => {
+    return await axiosConfig("GET",`${serverURL}/candidate`,{})
+}
