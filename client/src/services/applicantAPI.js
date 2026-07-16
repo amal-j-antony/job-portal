@@ -7,12 +7,14 @@ export const applyToJobListingAPI = async (body) => {
 }
 
 // GET job applications by account id
-export const getApplicationsAPI = async (accountID) => {
-    if (accountID) {
-        return await axiosConfig("GET", `${serverURL}/applications`, {}, {
+export const getApplicationsByID_API = async (accountID) => {
+    return await axiosConfig("GET", `${serverURL}/applications`, {}, {
             applicantID: accountID
         })
-    }
 
 }
 
+// GET all applications
+export const getAllApplicationsAPI = async () => {
+    return await axiosConfig("GET",`${serverURL}/applications`,{})
+}

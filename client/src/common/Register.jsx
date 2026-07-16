@@ -43,9 +43,9 @@ function Register() {
                 const result = await addAccountAPI(accountData)
                 alert("success")
                 console.log(result);
-                localStorage.setItem("account",JSON.stringify(result.data))
+                localStorage.setItem("account", JSON.stringify(result.data))
                 dispatch(initializeAccount(accDataStore))
-                navigate(`/${role}/${result.data.id}/dashboard`)              
+                navigate(`/${role}/${result.data.id}/dashboard`)
             }
         } else {
             alert("Enter all Details")
@@ -56,9 +56,13 @@ function Register() {
     return (
         <main className='flex flex-col justify-center items-center w-full min-h-[90vh]'>
             {
-                registerData.role == 0 &&
+                registerData.step == 0 &&
                 // Choose account type
-                <section className='flex flex-col items-center gap-5'>
+                <section className='flex flex-col items-center gap-5 shadow-xl p-10 border border-zinc-300 rounded-3xl'>
+                    <div className='flex w-full hover:underline '>
+                        <Link to={"/"} className='flex gap-2 items-center '><ArrowLeftIcon/> Back</Link>
+                    </div>
+
                     <h1 className='text-4xl'>Register Account</h1>
                     <h1>Select applicable option</h1>
                     <div className="">
@@ -89,35 +93,35 @@ function Register() {
 
 
             {
-                
+
                 registerData.step == 1 &&
                 <section className="p-10 rounded-3xl shadow-lg flex flex-col items-center gap-5 bg-zinc-100">
-                <div className="w-full">
-                    <span onClick={() => setRegisterData({
-                        step: 0,
-                        role: ""
-                    })} className='flex items-center gap-2 cursor-pointer hover:underline'><ArrowLeftIcon /> back</span>
-                </div>
-                <h1 className='text-4xl font-bold ' >Register {
-                    registerData.role == "candidate" ? <span>Candidate</span> : <span>Company</span>
-                } Account</h1>
-                <input onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })} type="text" placeholder='Enter Name' className='w-100 border p-4 rounded-xl placeholder:text-center text-center' />
-                <input onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })} type="text" placeholder='Enter Email' className='w-100 border p-4 rounded-xl placeholder:text-center text-center' />
-                {
-                    !registerData?.email?.includes("@") ? !registerData.email == "" ?
-                    <h1 className='text-red-500'>Enter Valid email</h1> : <></> : <></>
-                }
-                <input onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })} type="password" placeholder='Enter Password' className='w-100 border p-4 rounded-xl placeholder:text-center text-center' />
-                <input onChange={(e) => setRegisterData({ ...registerData, confirm: e.target.value })} type="password" placeholder='Confirm Password' className='w-100 border p-4 rounded-xl placeholder:text-center text-center' />
-                {
-                    registerData?.password != registerData.confirm &&
-                    <h1 className='text-red-500'>Passwords must match</h1>
-                }
-                <button onClick={registerAccount} className='bg-blue-900 w-100 py-2 rounded-xl text-white cursor-pointer text-center'>Register Now</button>
-                <Link to={"/login"} >Already have an account? <u>Login</u></Link>
+                    <div className="w-full">
+                        <span onClick={() => setRegisterData({
+                            step: 0,
+                            role: ""
+                        })} className='flex items-center gap-2 cursor-pointer hover:underline'><ArrowLeftIcon /> back</span>
+                    </div>
+                    <h1 className='text-4xl font-bold ' >Register {
+                        registerData.role == "candidate" ? <span>Candidate</span> : <span>Company</span>
+                    } Account</h1>
+                    <input onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })} type="text" placeholder='Enter Name' className='w-100 border p-4 rounded-xl placeholder:text-center text-center' />
+                    <input onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })} type="text" placeholder='Enter Email' className='w-100 border p-4 rounded-xl placeholder:text-center text-center' />
+                    {
+                        !registerData?.email?.includes("@") ? !registerData.email == "" ?
+                            <h1 className='text-red-500'>Enter Valid email</h1> : <></> : <></>
+                    }
+                    <input onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })} type="password" placeholder='Enter Password' className='w-100 border p-4 rounded-xl placeholder:text-center text-center' />
+                    <input onChange={(e) => setRegisterData({ ...registerData, confirm: e.target.value })} type="password" placeholder='Confirm Password' className='w-100 border p-4 rounded-xl placeholder:text-center text-center' />
+                    {
+                        registerData?.password != registerData.confirm &&
+                        <h1 className='text-red-500'>Passwords must match</h1>
+                    }
+                    <button onClick={registerAccount} className='bg-blue-900 w-100 py-2 rounded-xl text-white cursor-pointer text-center'>Register Now</button>
+                    <Link to={"/login"} >Already have an account? <u>Login</u></Link>
 
-            </section>
-}
+                </section>
+            }
 
             {/* {
                 // company register

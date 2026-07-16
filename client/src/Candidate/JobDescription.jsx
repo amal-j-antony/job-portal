@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { toast } from 'sonner';
 
-function JobDescription({ jobID, companyInfo, joblistings }) {
+function JobDescription({ jobID, companyInfo, joblistings, getJobs, check, checkIfApplied }) {
   const reduxAccData = useSelector(state => state.authReducer)
   let listingData = null, companyData = null
   
@@ -32,10 +32,13 @@ function JobDescription({ jobID, companyInfo, joblistings }) {
       })
 
       if (result.status == 201) {
-        toast.success("Application submitted successfully",{position:"top-center"})
+        toast.success("Application submitted successfully", { position: "top-center" })
+        getJobs()
       }
     }
   }
+
+  
 
 
   return (
@@ -58,13 +61,20 @@ function JobDescription({ jobID, companyInfo, joblistings }) {
                 </div>
                 <div className="py-5">
 
-                  <button onClick={() => applyForJob(jobID)} className="bg-foreground text-white py-2 px-4 rounded-2xl cursor-pointer">Apply for Job</button>
+
                   {/* {
                     listingData?.applicantID?.includes(reduxAccData.accountID) ?
-                    <button  className="bg-foreground text-white py-2 px-4 rounded-2xl cursor-pointer">Applied</button>
+                    
                     :
                     
                   } */}
+
+                  {
+                    !check ?
+                      <button onClick={() => applyForJob(jobID)} className="bg-foreground text-white py-2 px-4 rounded-2xl cursor-pointer hover:bg-blue-700 duration-500">Apply Now</button>
+                      :
+                      <button className="bg-foreground text-white py-2 px-4 rounded-2xl cursor-pointer">Applied</button>
+                  }
                 </div>
               </div>
             </>

@@ -6,13 +6,24 @@ import HomeMarquee from './HomeMarquee'
 import { testimonials } from '@/assets/testimonial'
 import { whyChoose } from '@/assets/whyChoose'
 import Header from './Header'
+import { useNavigate } from 'react-router-dom'
+import Footer from './Footer'
+import { toast } from 'sonner'
+
+
 function Home() {
+  const navigate = useNavigate()
+
   const [animatedValue, setAnimatedValue] = useState({
     companies: 0,
     candidates: 0,
     listings: 0,
     placements: 0
   })
+
+  const sendToast = () => {
+    toast.info("Verification Coming Soon",{position:"top-center"})
+  }
 
   useEffect(() => {
     setAnimatedValue({
@@ -33,9 +44,9 @@ function Home() {
             <img className='h-50' src="https://res.cloudinary.com/dwaaoyztz/image/upload/v1783449552/Red_Network_Globe_jzbftj.svg" alt="" />
             <h1 className='text-white text-2xl md:text-6xl font-bold text-center'>Connecting exceptional talent<br />with ambitious businesses </h1>
             <div className='flex max-md:flex-col gap-5 py-4'>
-              <button className='  py-5 px-5 rounded-xl very-blue cursor-pointer flex items-center gap-4 text-xl' >Find Jobs<ArrowRightIcon size={24} /> </button>
+              <button onClick={()=>navigate("/register")} className='  py-5 px-5 rounded-xl very-blue cursor-pointer flex items-center gap-4 text-xl' >Find Jobs<ArrowRightIcon size={24} /> </button>
               <Separator orientation="vertical" className="hidden md:block " />
-              <button className='  py-5 px-5 rounded-xl very-blue cursor-pointer flex items-center gap-4 text-xl' >Hire Talent <ArrowRightIcon size={24} /> </button>
+              <button onClick={()=>navigate("/register")}  className='  py-5 px-5 rounded-xl very-blue cursor-pointer flex items-center gap-4 text-xl' >Hire Talent <ArrowRightIcon size={24} /> </button>
             </div>
           </div>
         </section>
@@ -99,7 +110,7 @@ function Home() {
           <div className="flex flex-col justify-center -center gap-10 bg-slate-50 shadow p-15 rounded-r-3xl">
             <h1 className="text- font-bold text-4xl">Stand Out to Recruiters</h1>
             <h1 className='text- text-2xl'>Get your profile verified and build trust with employers before they even open your resume.</h1>
-            <button className='bg-blue-500 w-100 p-5 text-2xl text-white rounded-3xl flex items-center justify-center gap-3 cursor-pointer' >Get Verified Now <ArrowRightIcon /> </button>
+            <button onClick={sendToast} className='bg-blue-500 w-100 p-5 text-2xl text-white rounded-3xl flex items-center justify-center gap-3 cursor-pointer' >Get Verified Now <ArrowRightIcon /> </button>
           </div>
         </section>
 
@@ -145,6 +156,7 @@ function Home() {
         </section>
 
       </main>
+      <Footer />
     </>
   )
 }

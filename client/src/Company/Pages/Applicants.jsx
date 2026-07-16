@@ -1,6 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar'
+import { getJobPostsByCompanyAPI } from '@/services/jobPostAPI'
+import { useSelector } from 'react-redux'
+import { getAllApplicationsAPI } from '@/services/applicantAPI'
+import JobListing from './JobListing'
 function Applicants() {
+    const reduxAccData = useSelector(state => state.authReducer)
+    const [applicantData, setApplicantData] = useState([])
+    const [jobInfo, setJobInfo] = useState([])
+
+    const getApplications = async () => {
+        try {
+            const jobsListed = await getJobPostsByCompanyAPI(reduxAccData.accountID)
+            console.log("jobs", jobsListed);
+            if (jobsListed.status == 200) {
+                setJobInfo(jobsListed.data)
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+        try {
+            const applicantResult = await getAllApplicationsAPI()
+            console.log("applicantResult", applicantResult);
+            if (applicantResult.status == 200) {
+                setApplicantData(applicantResult.data)
+            }
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
+    useEffect(() => {
+        getApplications()
+    }, [reduxAccData])
     return (
         <div className='grid grid-cols-12'>
             <div className='col-span-2 bg-[#03045e] h-screen sticky top-0'>
@@ -66,6 +100,19 @@ function Applicants() {
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div className="">
+                    {
+                        jobInfo.map(item => {
+                            applicantData.map(applicant => {
+                                if (applicant.listingID == item.id) {
+                                    <div className="">
+                                        <h1></h1>
+                                    </div>
+                                }
+                            })
+                        })
+                    }
                 </div>
             </div>
         </div>

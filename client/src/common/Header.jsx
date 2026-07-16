@@ -36,7 +36,7 @@ function Header() {
             <Link to={"/contact"} className='hover:bg-blue-900 p-5 duration-500 '>Contact Us</Link>
             {/* <Separator orientation='vertical' className="my-5" /> */}
             {
-              reduxUserData.accountID != "" ?
+              reduxUserData.accountID ?
                 <div className="">
                   <Link to={"/login"} className='flex gap-4 items-center hover:bg-blue-900 p-5 duration-500 '>Dashboard
                     <img src="https://res.cloudinary.com/dwaaoyztz/image/upload/v1783783482/user_s1wtzw.png" className='h-10' alt="" />
